@@ -1,0 +1,10 @@
+FROM node:10 as builder
+WORKDIR '/opt'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm build
+
+FROM nginx
+COPY --from=builder /opt/build /usr/share/nginx/html
+
