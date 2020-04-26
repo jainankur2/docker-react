@@ -5,7 +5,7 @@ RUN npm install
 COPY ./ ./
 RUN ls -l
 RUN pwd
-RUN npm build
+RUN npm run build
 RUN ls -l
 
 FROM nginx
