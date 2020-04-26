@@ -6,7 +6,7 @@ before_install:
     - docker build -t jainankur2/docker-react -f Dockerfile2.prod .
 
 script:
-    - docker run -e CI=true jainankur2/docker-react npm run test -- --coverage
+    - docker run -e CI=true jainankur2/docker-react
 language: generic
 
 deploy:
