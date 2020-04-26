@@ -3,8 +3,20 @@ services:
     - docker
 
 before_install:
-    - docker build -t jainankur2/docker-react -f Dockerfile2.dev .
+    - docker build -t jainankur2/docker-react -f Dockerfile2.prod .
 
 script:
     - docker run -e CI=true jainankur2/docker-react npm run test -- --coverage
 language: generic
+
+deploy:
+   provider: elasticbeanstalk
+   region: "us-east-2" 
+   app: "docker"
+   env: "Docker-env"
+   bucket_name: "elasticbeanstalk-us-east-2-651827679494"
+   bucket_path: "docker"
+   on:
+    branch: master
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key: $AWS_SECRET_KEY
