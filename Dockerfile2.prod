@@ -6,8 +6,10 @@ COPY ./ ./
 RUN ls -l
 RUN pwd
 RUN npm build
+RUN ls -l
 
 FROM nginx
 WORKDIR '/'
 EXPOSE 80
+RUN --from=0 ls -l /
 COPY --from=0 /build /usr/share/nginx/html
